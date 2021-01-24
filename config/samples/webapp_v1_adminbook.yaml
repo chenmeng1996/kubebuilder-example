@@ -1,0 +1,7 @@
+apiVersion: webapp.tutorial.kubebuilder.io/v1
+kind: Adminbook
+metadata:
+  name: adminbook-sample
+spec:
+  # Add fields here
+  foo: bar

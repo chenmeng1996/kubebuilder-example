@@ -1,0 +1,20 @@
+# permissions for end users to view adminbooks.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: adminbook-viewer-role
+rules:
+- apiGroups:
+  - webapp.tutorial.kubebuilder.io
+  resources:
+  - adminbooks
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - webapp.tutorial.kubebuilder.io
+  resources:
+  - adminbooks/status
+  verbs:
+  - get
