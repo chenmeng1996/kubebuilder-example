@@ -54,6 +54,9 @@ type Guestbook struct {
 	Status GuestbookStatus `json:"status,omitempty"`
 }
 
+func (*Guestbook) Hub() {
+}
+
 // +kubebuilder:object:root=true
 
 // GuestbookList contains a list of Guestbook
