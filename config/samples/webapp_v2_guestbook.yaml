@@ -1,0 +1,11 @@
+apiVersion: webapp.tutorial.kubebuilder.io/v2
+kind: Guestbook
+metadata:
+  name: guestbook-sample
+spec:
+  # Add fields here
+  status: running
+  fullname: chenmeng
+  hobby:
+    - coding
+    - sleep

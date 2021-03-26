@@ -5,4 +5,7 @@ resources:
 - group: webapp
   kind: Guestbook
   version: v1
+- group: webapp
+  kind: Guestbook
+  version: v2
 version: "2"

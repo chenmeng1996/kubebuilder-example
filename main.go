@@ -19,14 +19,17 @@ package main
 import (
 	"flag"
 	"os"
-	"tutorial.kubebuilder.io/kubebuilder-example/apis/webapp.tutorial.kubebuilder.io/v1"
-	"tutorial.kubebuilder.io/kubebuilder-example/controllers/webapp.tutorial.kubebuilder.io"
+
+	v1 "tutorial.kubebuilder.io/kubebuilder-example/apis/webapp/v1"
+	webapp_tutorial_kubebuilder_io "tutorial.kubebuilder.io/kubebuilder-example/controllers/webapp"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
+
+	webappv2 "tutorial.kubebuilder.io/kubebuilder-example/apis/webapp/v2"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -39,6 +42,7 @@ func init() {
 	_ = clientgoscheme.AddToScheme(scheme)
 
 	_ = v1.AddToScheme(scheme)
+	_ = webappv2.AddToScheme(scheme)
 	// +kubebuilder:scaffold:scheme
 }
 

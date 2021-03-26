@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1
+package v2
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -29,20 +29,15 @@ type GuestbookSpec struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of Guestbook. Edit Guestbook_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
-
-	// 添加两个新字段
-	FirstName string `json:"firstname"`
-	LastName  string `json:"lastname"`
+	Status   string   `json:"status"`
+	Hobby    []string `json:"hobby"`    // v2版本修改类型
+	Fullname string   `json:"fullname"` // v2版本新增
 }
 
 // GuestbookStatus defines the observed state of Guestbook
 type GuestbookStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
-
-	// 添加新字段
-	Status string `json:"Status"`
 }
 
 // +kubebuilder:object:root=true

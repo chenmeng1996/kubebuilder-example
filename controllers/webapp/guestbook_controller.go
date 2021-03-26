@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package webapp_tutorial_kubebuilder_io
+package webapp
 
 import (
 	"context"
 	"log"
-	"tutorial.kubebuilder.io/kubebuilder-example/apis/webapp.tutorial.kubebuilder.io/v1"
+	"tutorial.kubebuilder.io/kubebuilder-example/apis/webapp/v1"
 
 	"github.com/go-logr/logr"
 	"k8s.io/apimachinery/pkg/runtime"

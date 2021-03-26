@@ -4,6 +4,6 @@ metadata:
   name: guestbook-sample
 spec:
   # Add fields here
-  foo: bar
-  firstname: Meng
-  lastname: Chen
+  status: running
+  name: chenmeng
+  hobby: coding
