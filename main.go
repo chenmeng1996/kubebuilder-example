@@ -29,6 +29,7 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
+	webappv1 "tutorial.kubebuilder.io/kubebuilder-example/apis/webapp/v1"
 	webappv2 "tutorial.kubebuilder.io/kubebuilder-example/apis/webapp/v2"
 	// +kubebuilder:scaffold:imports
 )
@@ -43,6 +44,7 @@ func init() {
 
 	_ = v1.AddToScheme(scheme)
 	_ = webappv2.AddToScheme(scheme)
+	_ = webappv1.AddToScheme(scheme)
 	// +kubebuilder:scaffold:scheme
 }
 
@@ -75,6 +77,10 @@ func main() {
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Guestbook")
+		os.Exit(1)
+	}
+	if err = (&webappv1.Guestbook{}).SetupWebhookWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create webhook", "webhook", "Guestbook")
 		os.Exit(1)
 	}
 	// +kubebuilder:scaffold:builder
