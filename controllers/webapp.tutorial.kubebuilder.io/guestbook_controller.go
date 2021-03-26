@@ -14,18 +14,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package controllers
+package webapp_tutorial_kubebuilder_io
 
 import (
 	"context"
 	"log"
+	"tutorial.kubebuilder.io/kubebuilder-example/apis/webapp.tutorial.kubebuilder.io/v1"
 
 	"github.com/go-logr/logr"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
-
-	webappv1 "tutorial.kubebuilder.io/kubebuilder-example/api/v1"
 )
 
 // GuestbookReconciler reconciles a Guestbook object
@@ -48,7 +47,7 @@ func (r *GuestbookReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	_ = r.Log.WithValues("apiexample", req.NamespacedName)
 
 	// 获取当前的CR，并打印
-	obj := &webappv1.Guestbook{}
+	obj := &v1.Guestbook{}
 	if err := r.Get(ctx, req.NamespacedName, obj); err != nil {
 		log.Println(err, "Unable to fetch object")
 	} else {
@@ -66,6 +65,6 @@ func (r *GuestbookReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 
 func (r *GuestbookReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&webappv1.Guestbook{}).
+		For(&v1.Guestbook{}).
 		Complete(r)
 }

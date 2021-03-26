@@ -1,4 +1,5 @@
 domain: tutorial.kubebuilder.io
+multigroup: true
 repo: tutorial.kubebuilder.io/kubebuilder-example
 resources:
 - group: webapp

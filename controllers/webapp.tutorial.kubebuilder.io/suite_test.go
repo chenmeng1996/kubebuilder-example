@@ -14,11 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package controllers
+package webapp_tutorial_kubebuilder_io
 
 import (
 	"path/filepath"
 	"testing"
+	"tutorial.kubebuilder.io/kubebuilder-example/apis/webapp.tutorial.kubebuilder.io/v1"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -29,8 +30,6 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/envtest/printer"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
-
-	webappv1 "tutorial.kubebuilder.io/kubebuilder-example/api/v1"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -62,7 +61,7 @@ var _ = BeforeSuite(func(done Done) {
 	Expect(err).ToNot(HaveOccurred())
 	Expect(cfg).ToNot(BeNil())
 
-	err = webappv1.AddToScheme(scheme.Scheme)
+	err = v1.AddToScheme(scheme.Scheme)
 	Expect(err).NotTo(HaveOccurred())
 
 	// +kubebuilder:scaffold:scheme

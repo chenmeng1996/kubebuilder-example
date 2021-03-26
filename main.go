@@ -19,15 +19,14 @@ package main
 import (
 	"flag"
 	"os"
+	"tutorial.kubebuilder.io/kubebuilder-example/apis/webapp.tutorial.kubebuilder.io/v1"
+	"tutorial.kubebuilder.io/kubebuilder-example/controllers/webapp.tutorial.kubebuilder.io"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
-
-	webappv1 "tutorial.kubebuilder.io/kubebuilder-example/api/v1"
-	"tutorial.kubebuilder.io/kubebuilder-example/controllers"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -39,7 +38,7 @@ var (
 func init() {
 	_ = clientgoscheme.AddToScheme(scheme)
 
-	_ = webappv1.AddToScheme(scheme)
+	_ = v1.AddToScheme(scheme)
 	// +kubebuilder:scaffold:scheme
 }
 
@@ -66,7 +65,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&controllers.GuestbookReconciler{
+	if err = (&webapp_tutorial_kubebuilder_io.GuestbookReconciler{
 		Client: mgr.GetClient(),
 		Log:    ctrl.Log.WithName("controllers").WithName("Guestbook"),
 		Scheme: mgr.GetScheme(),
