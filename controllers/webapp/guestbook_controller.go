@@ -18,7 +18,6 @@ package webapp
 
 import (
 	"context"
-	"log"
 	"tutorial.kubebuilder.io/kubebuilder-example/apis/webapp/v1"
 
 	"github.com/go-logr/logr"
@@ -42,23 +41,6 @@ func (r *GuestbookReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	_ = r.Log.WithValues("guestbook", req.NamespacedName)
 
 	// your logic here
-	// 新增逻辑
-	ctx := context.Background()
-	_ = r.Log.WithValues("apiexample", req.NamespacedName)
-
-	// 获取当前的CR，并打印
-	obj := &v1.Guestbook{}
-	if err := r.Get(ctx, req.NamespacedName, obj); err != nil {
-		log.Println(err, "Unable to fetch object")
-	} else {
-		log.Println("Geting from Kubebuilder to", obj.Spec.FirstName, obj.Spec.LastName)
-	}
-
-	// 初始化 CR 的Status 为 Running
-	obj.Status.Status = "Running"
-	if err := r.Status().Update(ctx, obj); err != nil {
-		log.Println(err, "unable to update status")
-	}
 
 	return ctrl.Result{}, nil
 }

@@ -57,7 +57,11 @@ type Guestbook struct {
 func (in *Guestbook) ConvertTo(dstRaw conversion.Hub) error {
 	dst := dstRaw.(*v1.Guestbook)
 	dst.Spec.Name = in.Spec.Fullname
-	dst.Spec.Hobby = in.Spec.Hobby[0]
+	hobby := ""
+	for _, v := range in.Spec.Hobby {
+		hobby += v
+	}
+	dst.Spec.Hobby = hobby
 
 	dst.ObjectMeta = in.ObjectMeta
 	dst.Spec.Status = in.Spec.Status

@@ -24,6 +24,7 @@ import (
 // log is for logging in this package.
 var guestbooklog = logf.Log.WithName("guestbook-resource")
 
+// +kubebuilder:webhook
 func (r *Guestbook) SetupWebhookWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewWebhookManagedBy(mgr).
 		For(r).
@@ -31,3 +32,5 @@ func (r *Guestbook) SetupWebhookWithManager(mgr ctrl.Manager) error {
 }
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
+
+// +kubebuilder:webhook:path=/mutate-webapp-tutorial-kubebuilder-io-v1-cronjob,mutating=true,failurePolicy=fail,groups=webapp.tutorial.kubebuilder.io,resources=guestbooks,verbs=create;update,versions=v1,name=mcronjob.kb.io

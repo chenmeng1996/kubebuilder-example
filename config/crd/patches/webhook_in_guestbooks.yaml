@@ -5,6 +5,7 @@ kind: CustomResourceDefinition
 metadata:
   name: guestbooks.webapp.tutorial.kubebuilder.io
 spec:
+  preserveUnknownFields: false
   conversion:
     strategy: Webhook
     webhookClientConfig:
