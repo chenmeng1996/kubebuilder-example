@@ -17,14 +17,18 @@ limitations under the License.
 package v1
 
 import (
+	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
+	"sigs.k8s.io/controller-runtime/pkg/webhook"
 )
 
 // log is for logging in this package.
 var guestbooklog = logf.Log.WithName("guestbook-resource")
 
-// +kubebuilder:webhook
+// +kubebuilder:webhook:verbs=create;update,path=/validate-webapp-tutorial-kubebuilder-io-v1-guestbook,mutating=false,failurePolicy=fail,groups=webapp.tutorial.kubebuilder.io,resources=guestbooks,versions=v1,name=vcronjob.kb.io
+// +kubebuilder:webhook:path=/mutate-webapp-tutorial-kubebuilder-io-v1-guestbook,mutating=true,failurePolicy=fail,groups=webapp.tutorial.kubebuilder.io,resources=guestbooks,verbs=create;update,versions=v1,name=mcronjob.kb.io
+
 func (r *Guestbook) SetupWebhookWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewWebhookManagedBy(mgr).
 		For(r).
@@ -33,4 +37,22 @@ func (r *Guestbook) SetupWebhookWithManager(mgr ctrl.Manager) error {
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 
-// +kubebuilder:webhook:path=/mutate-webapp-tutorial-kubebuilder-io-v1-cronjob,mutating=true,failurePolicy=fail,groups=webapp.tutorial.kubebuilder.io,resources=guestbooks,verbs=create;update,versions=v1,name=mcronjob.kb.io
+var _ webhook.Defaulter = &Guestbook{}
+
+func (r *Guestbook) Default() {
+
+}
+
+var _ webhook.Validator = &Guestbook{}
+
+func (r *Guestbook) ValidateCreate() error {
+	return nil
+}
+
+func (r *Guestbook) ValidateUpdate(old runtime.Object) error {
+	return nil
+}
+
+func (r *Guestbook) ValidateDelete() error {
+	return nil
+}

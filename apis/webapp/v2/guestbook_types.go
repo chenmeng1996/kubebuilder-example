@@ -17,6 +17,7 @@ limitations under the License.
 package v2
 
 import (
+	"fmt"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"sigs.k8s.io/controller-runtime/pkg/conversion"
 	v1 "tutorial.kubebuilder.io/kubebuilder-example/apis/webapp/v1"
@@ -55,6 +56,7 @@ type Guestbook struct {
 
 // 当前版本 -> Hub版本（v1）
 func (in *Guestbook) ConvertTo(dstRaw conversion.Hub) error {
+	fmt.Println("v2 转 v1")
 	dst := dstRaw.(*v1.Guestbook)
 	dst.Spec.Name = in.Spec.Fullname
 	hobby := ""
@@ -71,9 +73,13 @@ func (in *Guestbook) ConvertTo(dstRaw conversion.Hub) error {
 
 // Hub版本（v1）-> 当前版本
 func (in *Guestbook) ConvertFrom(srcRaw conversion.Hub) error {
+	fmt.Println("v1 转 v2")
 	src := srcRaw.(*v1.Guestbook)
 
 	in.Spec.Fullname = src.Spec.Name
+	if in.Spec.Hobby == nil {
+		in.Spec.Hobby = make([]string, 1)
+	}
 	in.Spec.Hobby[0] = src.Spec.Hobby
 	in.Spec.Status = src.Spec.Status
 

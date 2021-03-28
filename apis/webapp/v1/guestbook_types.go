@@ -29,7 +29,6 @@ type GuestbookSpec struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of Guestbook. Edit Guestbook_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
 
 	Status string `json:"status"`
 	Name   string `json:"name"`  // v2版本删除

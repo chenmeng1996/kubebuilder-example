@@ -1,7 +1,7 @@
 apiVersion: webapp.tutorial.kubebuilder.io/v1
 kind: Guestbook
 metadata:
-  name: guestbook-sample
+  name: guestbook-sample1
 spec:
   # Add fields here
   status: running
