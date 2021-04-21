@@ -5,4 +5,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: chenmeng1996/kubebuilder-example
-  newTag: v1
+  newTag: v2.0
